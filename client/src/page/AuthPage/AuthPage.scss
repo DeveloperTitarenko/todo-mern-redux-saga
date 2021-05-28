@@ -1,0 +1,53 @@
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  height: 100vh;
+
+  .Auth {
+    text-align: center;
+    width: 610px;
+    height: 580px;
+    background: #FFFFFF;
+    box-shadow: 0 2px 16px rgba(51, 51, 51, 0.06);
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    font-family: Nunito, serif;
+
+    &__exit {
+      width: 100%;
+
+      &-icon {
+        float: right;
+        margin: 15px 15px;
+        cursor: pointer;
+      }
+    }
+
+    &__signUp {
+      width: 215px;
+      margin-bottom: 44px;
+      font-size: 15px;
+      line-height: 24px;
+
+      &-forgot {
+        color: #394BEB;
+        font-weight: 700;
+        cursor: pointer;
+      }
+    }
+
+    &__line {
+      width: 450px;
+      height: 1px;
+      left: 495px;
+      top: 675px;
+      background: #EBEBEB;
+    }
+  }
+}
