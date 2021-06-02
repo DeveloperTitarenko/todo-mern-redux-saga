@@ -1,5 +1,5 @@
 import {AUTH, LOGIN, LOGOUT, REGISTRATION} from "../types";
-import {useHistory} from "react-router-dom";
+
 
 const initialState = {
   email: '',

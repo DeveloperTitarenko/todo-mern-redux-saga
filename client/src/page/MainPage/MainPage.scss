@@ -1,0 +1,17 @@
+.app{
+  height: 100vh;
+  display: flex;
+  width: 100%;
+}
+.content{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  &__header{
+    height: 8rem;
+    display: flex;
+    background: #FFFFFF;
+    padding-left: 4rem;
+  }
+}

@@ -1,4 +1,4 @@
-import { useEffect, useState} from 'react'
+import {useEffect, useState} from 'react'
 import './AuthPage.scss'
 import Input from "../../components/Input/Input";
 import Button from "../../components/Button/Button";
@@ -6,7 +6,6 @@ import {login, registration} from "../../redux/actions/auth.actions";
 import {useDispatch, useSelector} from "react-redux";
 import {Loader} from "../../components/loader/Loader";
 import {Error} from "../../components/error/Error";
-
 
 
 const AuthPage = () => {
@@ -69,6 +68,8 @@ const AuthPage = () => {
             ...prevState,
             repeatPassword: false
           }))
+      default:
+        return null
     }
   }, [form])
 
@@ -89,34 +90,22 @@ const AuthPage = () => {
 
           <h1>{isLogIn ? 'Log In' : 'Registration'}</h1>
           {isLogIn ? <p>Log in with your data that you enetered during your registration.</p> : null}
-          <Input
-            textLabel='Your email'
-            name='email'
-            type='text'
-            placeholder='Enter your email'
-            value={form.email}
-            onChange={changeHandler}
-            style={validation.validationEmail ? {outlineColor: 'green'} : {outlineColor: 'red'}}
+
+          <Input textLabel='Your email' name='email' type='text' placeholder='Enter your email'
+                 value={form.email} onChange={changeHandler}
+                 style={validation.validationEmail ? {outlineColor: 'green'} : {outlineColor: 'red'}}
           />
-            <Input
-              textLabel='Password'
-              name='password'
-              type='password'
-              placeholder='Password'
-              value={form.password}
-              onChange={changeHandler}
-              style={validation.validationPassword ? {outlineColor: 'green'} : {outlineColor: 'red'}}
-            />
+          <Input
+            textLabel='Password' name='password' type='password' placeholder='Password'
+            value={form.password} onChange={changeHandler}
+            style={validation.validationPassword ? {outlineColor: 'green'} : {outlineColor: 'red'}}
+          />
 
           {!isLogIn ? <Input
-            textLabel='Repeat Password'
-            name='repeatPassword'
-            type='password'
-            placeholder='Repeat password'
-            value={form.repeatPassword}
-            onChange={changeHandler}
-            style={validation.repeatPassword ? {outlineColor: 'green'} : {outlineColor: 'red'}}
-          /> : null}
+              textLabel='Repeat Password' name='repeatPassword' type='password' placeholder='Repeat password'
+              value={form.repeatPassword} onChange={changeHandler}
+              style={validation.repeatPassword ? {outlineColor: 'green'} : {outlineColor: 'red'}}/>
+            : null}
 
           {loader ? <Loader/> : <Button text={isLogIn ? 'Log In' : 'Registration'}
                                         onClick={isLogIn ? logIn : registerHandler}

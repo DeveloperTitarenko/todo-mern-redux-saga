@@ -1,5 +1,4 @@
-import classes from './App.module.scss';
-import {useState, useEffect} from "react";
+import './app.scss'
 import {AuthContext} from "./context/Auth.context"
 import {UseRout} from './routes/Routs'
 import {useAuth} from "./hooks/aouth.hook";
@@ -9,7 +8,7 @@ function App() {
   const routs = UseRout()
   return (
     <AuthContext.Provider value={{login, logout, isLogin, token}}>
-       <div className={classes.App}>
+       <div className='app'>
          {routs}
         </div>
     </AuthContext.Provider>

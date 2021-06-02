@@ -1,0 +1,77 @@
+.drawer{
+  position: relative;
+  height: 100vh;
+  width: 11rem;
+  background: #333269;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 5rem;
+  transition: width .3s;
+  span{
+    display: none;
+  }
+
+  &__logo{
+    display: flex;
+    margin-bottom: 6.4rem;
+
+    &-title{
+      font-family: MuseoModerno, serif;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 3rem;
+      line-height: 4.8rem;
+      letter-spacing: 0.02em;
+      color: #DEDDFF;
+      display: none;
+    }
+  }
+
+  &__nav{
+    font-family: MuseoModerno, serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1.6rem;
+    line-height: 19px;
+    letter-spacing: 0.02em;
+    color: #C0BEFF;
+  }
+  ul{
+    li{
+      margin-bottom: 4rem;
+      list-style: none;
+
+    }
+  }
+}
+.arrow{
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  color: #DEDDFF;
+  cursor: pointer;
+}
+.menu{
+  position: absolute;
+  top: 1rem;
+  color: #DEDDFF;
+  cursor: pointer;
+}
+.active{
+  width: 24rem;
+  span{
+    display: inline;
+  }
+  .drawer__logo-title{
+    display: inline;
+  }
+  .drawer__logo-img{
+    margin-right: 0.8rem;
+  }
+  .drawer__nav{
+    img{
+      margin-right: 1.7rem;
+    }
+  }
+}
