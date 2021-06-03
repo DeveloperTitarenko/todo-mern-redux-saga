@@ -2,19 +2,15 @@ import './user.scss'
 
 import userImg from '../../static/LJibxMGb1hw.jpg'
 import Avatar from '@material-ui/core/Avatar';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
-import UserMenu from "../UserMenu/UserMenu";
 
-const User = () =>{
+const User = ({width, height, sizeH2, sizeP}) =>{
   return(
     <div className='avatar'>
-      <Avatar src={userImg}/>
+      <Avatar src={userImg} style={{width: width, height: height}}/>
       <div className='avatar__info'>
-        <h2>Vlad</h2>
-        <p>Junior</p>
+        <h2 style={{fontSize: sizeH2}}>Vlad</h2>
+        <p style={{fontSize: sizeP}}>Junior</p>
       </div>
-      {/*<MoreVertIcon fontSize='large' style={{color:  '#9592A6', cursor: 'pointer'}} />*/}
-      <UserMenu/>
     </div>
   )
 }

@@ -6,7 +6,7 @@ export const UseRout = () => {
    return(
        <Switch>
          <Route path="/login" exact component={AuthPage}/>
-         <PrivateRoute path="/" component={MainPage} exact/>
+         <PrivateRoute path="/" component={MainPage}/>
        </Switch>
      )
 }
