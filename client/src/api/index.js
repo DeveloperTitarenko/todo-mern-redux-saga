@@ -11,3 +11,12 @@ export const postDataToApi = async (route, data) => {
 export const getDataFromApi = async (route, params = '') =>{
   return await axiosInstance.get(`${route}${params}`)
 }
+
+export const deleteTaskId = async (route, params = '') => {
+  return await axiosInstance.delete(`${route}${params}`)
+}
+export const updateTaskId = async (route, params = '', data) => {
+  console.log('data:', data)
+  return await axiosInstance.patch(`${route}${params}`, data)
+}
+

@@ -1,10 +1,15 @@
-
+@import "../../style/mixin";
 .wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 0 auto;
   height: 100vh;
+
+  @include response(sm) {
+    margin: 0;
+
+  }
 
   .Auth {
     text-align: center;
@@ -18,6 +23,13 @@
     align-items: center;
     flex-direction: column;
     font-family: Nunito, serif;
+    padding: 0 20px 0 20px;
+
+    @include response(sm) {
+      width: 100%;
+      height: 100%;
+    }
+
     p{
       font-size: 1.5rem;
     }
@@ -46,7 +58,7 @@
     }
 
     &__line {
-      width: 450px;
+      width: 100%;
       height: 1px;
       left: 495px;
       top: 675px;

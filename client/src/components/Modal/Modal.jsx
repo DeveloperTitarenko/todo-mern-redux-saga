@@ -2,36 +2,67 @@ import React, {useState} from 'react';
 import './modal.scss'
 import Input from "../Input/Input";
 import Button from "../Button/Button";
+import ControlledOpenSelect from "../Select/Select";
+import {useDispatch, useSelector} from "react-redux";
+import {createTask, updateTask} from "../../redux/actions/tasks.action";
 
-const ModalCreateTask = ({active, setActive, setDataTasks}) => {
+const ModalCreateTask = ({modalActive, setModalActive, taskId, setTaskId}) => {
+  const user = useSelector((state) => state.auth)
+  const dispatch = useDispatch()
 
   const [task, setTask] = useState({
+    author: user.username,
     title: '',
-    text: ''
+    text: '',
+    type: '',
+    takeUp: false
   })
-  console.log(task)
   const changeHandler = (event) => {
     const {name, value} = event.target
     setTask((prev) => ({...prev, [name]: value}))
   }
   const createPostNew = () => {
-    setDataTasks((prev) => ([...prev, {...task}]))
+    dispatch(createTask({...task}))
     setTask({
+      author: user.username,
+      type: '',
       title: '',
-      text: ''
+      text: '',
+      takeUp: false
     })
-    setActive(false)
+    setModalActive(false)
+  }
+  const editPost = () => {
+    dispatch(updateTask({
+      id: taskId,
+      data: task
+    }))
+    setTask({
+      author: user.username,
+      type: '',
+      title: '',
+      text: '',
+      takeUp: false
+    })
+    setTaskId(null)
+    setModalActive(false)
   }
 
   return (
-    <div className={active ? 'modal-create active-modal' : 'modal-create'} onClick={() => setActive(false)}>
-      <div className={active ? 'modal-create__content active-modal' : 'modal-create__content'}
+    modalActive?
+    <div className={modalActive ? 'modal-create active-modal' : 'modal-create'} onClick={() => {
+      setTaskId(null)
+      setModalActive(false)
+    }}>
+      <div className={modalActive ? 'modal-create__content active-modal' : 'modal-create__content'}
            onClick={e => e.stopPropagation()}>
+        <ControlledOpenSelect setTask={setTask}/>
         <Input textLabel='Title' name='title' value={task.title} onChange={changeHandler}/>
         <Input textLabel='Text' name='text' value={task.text} onChange={changeHandler}/>
-        <Button text='Create task' onClick={createPostNew}/>
+        <Button text={taskId ? 'Edit' : 'Create task'} onClick={taskId ? editPost :createPostNew}/>
       </div>
     </div>
+      : null
   );
 }
 export default ModalCreateTask

@@ -1,17 +1,12 @@
-import {AUTH, LOGIN, LOGOUT, REGISTRATION} from "../types";
+import {AUTH, LOGOUT, REGISTRATION, SUCCESS_LOGIN} from "../types";
 
 
-const initialState = {
-  email: '',
-  password: '',
-  repeatPassword: '',
-  isAuth: false,
-}
 
-export const authReducer = (state = initialState, action) => {
+
+export const authReducer = (state = {}, action) => {
   switch (action.type){
     case REGISTRATION: return {...state, ...action.payload}
-    case LOGIN: return {...state, ...action.payload}
+    case SUCCESS_LOGIN: return {...state, ...action.payload}
     case LOGOUT: {
       localStorage.removeItem('token')
       return {...state, isAuth: false}

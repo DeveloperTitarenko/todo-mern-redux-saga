@@ -5,7 +5,7 @@ const bcryptjs = require('bcryptjs')
 const registration = async (req, res) => {
 
   try {
-    const {email, password} = req.body
+    const {email, password, username} = req.body
     const isUser = await User.findOne({email})
     if (isUser) {
       return res.status(300).json({message: 'Данный email уже зарегистрирован'})
@@ -13,6 +13,7 @@ const registration = async (req, res) => {
     const hashPassword = await bcryptjs.hash(password, 12)
 
     const user = new User({
+      username,
       email,
       password: hashPassword
     })
@@ -35,7 +36,9 @@ const logIn = async (req, res) => {
     if (isLogin) {
       res.status(200).send({
         token: user.generateJWT(user),
-        userId: user.id
+        username: user.username,
+        email: user.email,
+        id: user.id
       })
     } else {
       return res.status(300).send({message: 'Пароли не совпадают'});
@@ -45,13 +48,10 @@ const logIn = async (req, res) => {
   }
 }
 
-const get = async () => {
-  console.log('ok')
-}
+
 
 
 module.exports = {
   registration,
   logIn,
-  get
 }

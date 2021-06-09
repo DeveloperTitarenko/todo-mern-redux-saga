@@ -12,6 +12,7 @@ const AuthPage = () => {
   const [isLogIn, setIsLogIn] = useState(true)
   const [eventName, setEventName] = useState()
   const [form, setForm] = useState({
+    username: '',
     email: '',
     password: '',
     repeatPassword: '',
@@ -80,7 +81,7 @@ const AuthPage = () => {
   }
 
   return (
-    <>
+    <div style={{display: 'flex', flexDirection: "column", width: '100%'}}>
       {error ? <Error text={error}/> : null}
       <div className='wrapper'>
         <div className='Auth'>
@@ -90,6 +91,12 @@ const AuthPage = () => {
 
           <h1>{isLogIn ? 'Log In' : 'Registration'}</h1>
           {isLogIn ? <p>Log in with your data that you enetered during your registration.</p> : null}
+
+          {!isLogIn ? <Input
+              textLabel='Your username' name='username' type='text' placeholder='Enter your username'
+              value={form.username} onChange={changeHandler}
+              />
+            : null}
 
           <Input textLabel='Your email' name='email' type='text' placeholder='Enter your email'
                  value={form.email} onChange={changeHandler}
@@ -123,7 +130,7 @@ const AuthPage = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   )
 }
 export default AuthPage

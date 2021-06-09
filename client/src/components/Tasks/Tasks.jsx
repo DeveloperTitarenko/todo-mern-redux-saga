@@ -1,32 +1,19 @@
-import Task from "./Task/Task";
+
 import './tasks.scss'
 import CustomizeMenu from "../CustomizeMenu/CustomizeMenu";
 
-const Tasks = ({setModalActive, DataTasks}) => {
 
-
-  console.log(DataTasks)
+const Tasks = ({setModalActive,  component, title, customize}) => {
 
   return (
     <div className='tasks'>
       <header>
-        <h1>Tasks</h1>
-        <CustomizeMenu setModalActive={setModalActive}/>
+        <h1>{title}</h1>
+        {customize ? <CustomizeMenu setModalActive={setModalActive}/> : null}
       </header>
       <div className='tasks__content'>
-        {
-          DataTasks.map((task, index) => {
-            console.log(index)
-            return (
-              <div key={index}>
-                <Task task={task}/>
-              </div>
-            )
-          })
-        }
-
+        {component()}
       </div>
-
     </div>
 
   )

@@ -1,3 +1,4 @@
+@import "style/mixin";
 * {
   margin: 0;
   padding: 0;
@@ -6,6 +7,10 @@
 
 html{
   font-size: 10px;
+
+  @include response(md){
+    font-size: 8px;
+  }
 }
 
 html, body, div, span, applet, object, iframe,

@@ -1,26 +1,43 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
 
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import {useDispatch, useSelector} from "react-redux";
+import {deleteTask, updateTask} from "../../redux/actions/tasks.action";
 
 
 
-export default function TaskMenu({setTakeUp}) {
+export default function TaskMenu({taskId, setModalActive, setTaskId}) {
   const [anchorEl, setAnchorEl] = React.useState(null);
-
-
+  const dispatch = useDispatch()
+  const tasks = useSelector((state) => state.tasks)
+  const user = useSelector(state => state.auth)
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+
 
   const handleClose = () => {
     setAnchorEl(null);
   };
 
   const takeUp = () => {
-    setTakeUp((prev) => !prev)
+    const task = tasks.filter(task => task._id === taskId)
+    console.log(!task.takeUp)
+    dispatch(updateTask({
+      id: taskId,
+      data: {...task[0], performer: user.username, takeUp: !task.takeUp}
+    }))
+    handleClose()
+  }
+  const finalize = () => {
+    const task = tasks.filter(task => task._id === taskId)
+    dispatch(updateTask({
+      id: taskId,
+      data: {...task[0], finished: !task[0].finished}
+    }))
     handleClose()
   }
 
@@ -36,9 +53,16 @@ export default function TaskMenu({setTakeUp}) {
         style={{fontSize: '1.6rem'}}
       >
         <MenuItem onClick={takeUp}>Take up</MenuItem>
-        <MenuItem onClick={handleClose}>Edit</MenuItem>
-        <MenuItem onClick={handleClose}>Finalize</MenuItem>
-        <MenuItem onClick={handleClose}>Delete</MenuItem>
+        <MenuItem onClick={() => {
+          setTaskId(taskId)
+          setModalActive(true)
+          handleClose()
+        }}>Edit</MenuItem>
+        <MenuItem onClick={finalize}>Finalize</MenuItem>
+        <MenuItem onClick={() => {
+          handleClose()
+          dispatch(deleteTask(taskId))
+        }}>Delete</MenuItem>
       </Menu>
     </div>
   );

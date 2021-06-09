@@ -11,12 +11,12 @@ const MainPage = () => {
 const routMainPage = UseRoutMainPage()
 
   return(
-    <div className='app'>
+    <div className='main-page'>
       <Drawer/>
       <div className='right-content'>
         <header className="header">
           <Search/>
-          <div className='user'>
+          <div className='user-info'>
             <User/>
             <UserMenu/>
           </div>

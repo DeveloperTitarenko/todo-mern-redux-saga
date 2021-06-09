@@ -26,8 +26,8 @@ const Drawer = () => {
       <nav className="drawer__nav">
         <ul>
           <li><NavLink to='/Dashboard' className='link' activeClassName='active-link'><DashboardSvg/><span>Dashboard</span></NavLink></li>
-          <li><NavLink to="/Courses" className='link' activeClassName='active-link'><CoursesSvg/><span>Courses</span></NavLink></li>
-          <li><NavLink to="/Materials" className='link' activeClassName='active-link'><DocumentsSvg /><span>Materials</span></NavLink></li>
+          <li><NavLink to="/Courses" className='link' activeClassName='active-link'><CoursesSvg/><span>In gear</span></NavLink></li>
+          <li><NavLink to="/Materials" className='link' activeClassName='active-link'><DocumentsSvg /><span>Archive</span></NavLink></li>
           <li><NavLink to="/Settings" className='link' activeClassName='active-link'><SettingSvg /><span>Settings</span></NavLink></li>
         </ul>
       </nav>

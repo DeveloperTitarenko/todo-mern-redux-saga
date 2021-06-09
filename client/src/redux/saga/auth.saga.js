@@ -2,7 +2,7 @@ import {takeEvery, put, call, delay} from 'redux-saga/effects'
 import {LOGIN, REGISTRATION} from "../types";
 import {postDataToApi} from "../../api";
 import { push } from 'connected-react-router'
-import {auth} from "../actions/auth.actions";
+import {auth, successLogin} from "../actions/auth.actions";
 import {hideError, hideLoader, showError, showLoader} from "../actions/app.action";
 
 
@@ -12,7 +12,6 @@ function* sagaWorkerRegistration(action) {
   try{
     yield put(showLoader())
     const {data} = yield call( () => postDataToApi('/registration', action.payload))
-    console.log('registration',action.payload)
     localStorage.setItem('token',data.token)
     yield put(auth())
     yield put(hideLoader())
@@ -30,7 +29,7 @@ function* sagaWorkerLogin(action) {
   try{
     yield put(showLoader())
     const {data} = yield  call(() => postDataToApi('/login', action.payload))
-    console.log('login',data)
+    yield put(successLogin({...data}))
     localStorage.setItem('token',data.token)
     yield put(auth())
     yield put(hideLoader())
@@ -40,7 +39,6 @@ function* sagaWorkerLogin(action) {
     yield delay(2000)
     yield put(hideLoader())
     yield put(hideError())
-    console.log(e)
   }
 }
 
