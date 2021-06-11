@@ -34,6 +34,7 @@ function* sagaWorkerDeleteTask(action) {
 function* sagaWorkerUpdateTask(action) {
   try{
     const {data} = yield call(() => updateTaskId(`/task/`, action.payload.id, action.payload.data))
+    console.log(data)
     yield put(successUpdateTask(data))
   }catch (e){
 

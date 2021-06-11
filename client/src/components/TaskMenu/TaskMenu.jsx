@@ -25,10 +25,10 @@ export default function TaskMenu({taskId, setModalActive, setTaskId}) {
 
   const takeUp = () => {
     const task = tasks.filter(task => task._id === taskId)
-    console.log(!task.takeUp)
+    console.log(task)
     dispatch(updateTask({
       id: taskId,
-      data: {...task[0], performer: user.username, takeUp: !task.takeUp}
+      data: {...task[0], performer: user.username, takeUp: !task[0].takeUp}
     }))
     handleClose()
   }

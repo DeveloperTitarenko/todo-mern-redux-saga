@@ -1,0 +1,51 @@
+@import "src/style/mixin";
+
+.user-upload{
+  display: flex;
+  @include response(md){
+    flex-direction: column;
+    align-items: center;
+  }
+
+
+  &__preview{
+    margin-right: 20px;
+    img{
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+    }
+  }
+
+  &__controllers{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    &-buttons{
+      display: flex;
+    }
+    .input__file{
+      display: none;
+    }
+    .input__file-button{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      width: 100px;
+      height: 50px;
+      border: 1px solid #EBEBEB;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-right: 10px;
+
+      @include response(md){
+        width: 70px;
+      }
+      span{
+        margin: auto;
+      }
+    }
+  }
+
+}

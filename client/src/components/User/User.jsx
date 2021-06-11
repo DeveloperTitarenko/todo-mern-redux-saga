@@ -24,15 +24,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const User = ({width, height, sizeH2, sizeP}) =>{
-  const user = useSelector((state) => state.auth)
+const User = ({width, height, sizeH2, sizeP, user}) =>{
   const classes = useStyles();
   return(
     <div className='avatar'>
       {/*<Avatar src={userImg} style={{width: width, height: height}}/>*/}
-      <Avatar className={classes.orange} style={{width: width, height: height}}>{user.username[0]}</Avatar>
+      <Avatar className={classes.orange} style={{width: width, height: height}}>{user.username}</Avatar>
       <div className='avatar__info'>
-        <h2 style={{fontSize: sizeH2}}>{user.username}</h2>
+        <h2 style={{fontSize: sizeH2}}>{user}</h2>
         <p style={{fontSize: sizeP}}>Junior</p>
       </div>
     </div>

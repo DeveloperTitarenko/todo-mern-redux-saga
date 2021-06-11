@@ -4,7 +4,7 @@ import Tasks from "../../components/Tasks/Tasks";
 import ModalCreateTask from "../../components/Modal/Modal";
 import Task from "../../components/Tasks/Task/Task";
 
-const Materials = () => {
+const Archive = () => {
   const tasks = useSelector(state => state.tasks)
   const [modalActive, setModalActive] = useState(false)
   const [taskId, setTaskId] = useState(null)
@@ -29,4 +29,4 @@ const Materials = () => {
     </>
   )
 }
-export default Materials
+export default Archive

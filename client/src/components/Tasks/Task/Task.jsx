@@ -22,7 +22,7 @@ const Task = ({task, setModalActive, setTaskId}) => {
       <h1>{task.title}</h1>
       <p>{task.text}</p>
       <div className='user' style={{height: '3rem'}}>
-        {task.takeUp ? <User width={30} height={30} sizeH2='1.3rem' sizeP='1rem'/> : null}
+        {task.takeUp ? <User width={30} height={30} sizeH2='1.3rem' sizeP='1rem' user={task.performer}/> : null}
       </div>
 
     </div>
