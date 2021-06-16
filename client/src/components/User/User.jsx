@@ -4,7 +4,7 @@ import userImg from '../../static/LJibxMGb1hw.jpg'
 import Avatar from '@material-ui/core/Avatar';
 import { deepOrange, deepPurple } from '@material-ui/core/colors';
 import { makeStyles } from '@material-ui/core/styles';
-import {useSelector} from "react-redux";
+import LoaderCircle from "../LoaderCircle/LoaderCircle";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,15 +24,19 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const User = ({width, height, sizeH2, sizeP, user}) =>{
+const User = ({width, height, sizeH2, sizeP, userName, position}) =>{
   const classes = useStyles();
+
   return(
+    !userName?
+    <LoaderCircle/>
+      :
     <div className='avatar'>
       {/*<Avatar src={userImg} style={{width: width, height: height}}/>*/}
-      <Avatar className={classes.orange} style={{width: width, height: height}}>{user.username}</Avatar>
+      <Avatar className={classes.orange} style={{width: width, height: height}}>{userName[0]}</Avatar>
       <div className='avatar__info'>
-        <h2 style={{fontSize: sizeH2}}>{user}</h2>
-        <p style={{fontSize: sizeP}}>Junior</p>
+        <h2 style={{fontSize: sizeH2}}>{userName}</h2>
+        <p style={{fontSize: sizeP}}>{position}</p>
       </div>
     </div>
   )

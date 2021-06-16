@@ -48,10 +48,39 @@ const logIn = async (req, res) => {
   }
 }
 
+const updateUser = async (req, res) => {
+  const {id} = req.params
+  console.log('id ',id)
+  console.log('req.body ',req.body)
+  try{
+     const updateUser = {...req.body}
+     console.log('updateUser: ', updateUser)
+    await User.findByIdAndUpdate(id, updateUser,{new: true})
+    const newUser = await User.find({_id: id})
+    res.status(200).send(newUser)
+  }catch (err){
+    res.status(404).json({message: err.message})
+  }
+}
+
+const getUser = async (req, res) => {
+  const {email} = req.params
+  console.log('email ', email)
+  try{
+  const userData =  await User.find({email: email})
+    console.log('userData: ', userData)
+    res.status(200).send(userData)
+  }catch (err){
+    res.status(404).json({message: err.message})
+  }
+}
+
 
 
 
 module.exports = {
   registration,
   logIn,
+  updateUser,
+  getUser
 }

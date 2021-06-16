@@ -14,6 +14,18 @@ const UserSchema = new Schema({
   password: {
     type: String,
     required: true
+  },
+  firstName: {
+    type: String
+  },
+  lastName: {
+    type: String
+  },
+  position: {
+    type: String
+  },
+  logo: {
+    type: Object
   }
 })
 UserSchema.methods.generateJWT = function(user) {

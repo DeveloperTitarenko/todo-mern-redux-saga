@@ -20,3 +20,7 @@ export const updateTaskId = async (route, params = '', data) => {
   return await axiosInstance.patch(`${route}${params}`, data)
 }
 
+export const updateUserId = async (route, params = '', data) => {
+  console.log('data ',data)
+  return await axiosInstance.patch(`${route}${params}`, data)
+}

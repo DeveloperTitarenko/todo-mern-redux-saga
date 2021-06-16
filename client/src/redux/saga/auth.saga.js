@@ -4,6 +4,7 @@ import {postDataToApi} from "../../api";
 import { push } from 'connected-react-router'
 import {auth, successLogin} from "../actions/auth.actions";
 import {hideError, hideLoader, showError, showLoader} from "../actions/app.action";
+import {getUser} from "../actions/user.actions";
 
 
 

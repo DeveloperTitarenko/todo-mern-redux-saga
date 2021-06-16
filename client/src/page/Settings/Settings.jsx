@@ -4,27 +4,31 @@ import Input from "../../components/Input/Input";
 import {useState} from "react";
 import UploadAvatar from "../../components/UploadAvatar/UploadAvatar";
 import Check from "../../components/Check/Check";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {updateUser} from "../../redux/actions/user.actions";
 
 const Settings = () => {
-  const user = useSelector(state => state.auth)
+  const user = useSelector(state => state.user)
+  const dispatch = useDispatch()
   const [form, setForm] = useState({
     email: user.email,
     username: user.username,
-    firstName: '',
-    lastName: '',
-    position: '',
-    password: '',
-    newPassword: '',
-    repeatNewPassword: '',
+    firstName: user.firstName,
+    lastName: user.lastName,
+    position: user.position,
+    logo: {},
   })
-
   const handleForm = (event) => {
     const {name, value} = event.target
     setForm((prev) => {
       return ({...prev, [name]: value})
     })
   }
+
+  const updateUserData = () => {
+    dispatch(updateUser({_id: user._id, data: form}))
+  }
+
   return (
     <div className='setting'>
       <div className='setting__user'>
@@ -51,8 +55,8 @@ const Settings = () => {
             value={form.position} onChange={handleForm}
           />
         </div>
-        <UploadAvatar/>
-        <button className='button-save'>Save</button>
+        <UploadAvatar setForm={setForm}/>
+        <button className='button-save' onClick={updateUserData}>Save</button>
       </div>
       <div className='setting__password'>
         <h1>Setting password</h1>

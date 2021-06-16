@@ -2,12 +2,14 @@ import './app.scss'
 import {AuthContext} from "./context/Auth.context"
 import {UseRout} from './routes/Routs'
 import {useAuth} from "./hooks/aouth.hook";
-import {BrowserRouter} from "react-router-dom";
 import {useEffect} from "react";
 import {getTasksState} from "./redux/actions/tasks.action";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {getUser} from "./redux/actions/user.actions";
+
 
 function App() {
+  const user = useSelector(state => state.auth)
   const dispatch = useDispatch()
   const {login, logout, isLogin, token} = useAuth()
   const routs = UseRout()

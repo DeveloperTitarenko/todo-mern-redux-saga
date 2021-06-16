@@ -5,7 +5,7 @@ import CachedIcon from "@material-ui/icons/Cached";
 import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
 import {useEffect, useState} from "react";
 
-const UploadAvatar = () => {
+const UploadAvatar = ({setForm}) => {
   const [selectedFile, setSelectedFile] = useState()
   const [preview, setPreview] = useState()
 
@@ -25,6 +25,7 @@ const UploadAvatar = () => {
       return
     }
     setSelectedFile(e.target.files[0])
+    setForm(prev => ({...prev, logo: e.target.files[0]}))
   }
 
   const remove = () => {

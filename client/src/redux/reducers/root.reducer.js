@@ -3,6 +3,7 @@ import {authReducer} from "./auth.reducer";
 import {connectRouter} from 'connected-react-router'
 import {appReducer} from "./app.reducer";
 import {tasksReducer} from "./tasks.reducer";
+import {userReducer} from "./user.reducer";
 
 
 export const rootReducer = (history) =>  combineReducers({
@@ -10,5 +11,6 @@ export const rootReducer = (history) =>  combineReducers({
   auth: authReducer,
   app: appReducer,
   tasks: tasksReducer,
+  user: userReducer
 })
 
