@@ -4,12 +4,12 @@ import {UseRout} from './routes/Routs'
 import {useAuth} from "./hooks/aouth.hook";
 import {useEffect} from "react";
 import {getTasksState} from "./redux/actions/tasks.action";
-import {useDispatch, useSelector} from "react-redux";
-import {getUser} from "./redux/actions/user.actions";
+import {useDispatch} from "react-redux";
+
+
 
 
 function App() {
-  const user = useSelector(state => state.auth)
   const dispatch = useDispatch()
   const {login, logout, isLogin, token} = useAuth()
   const routs = UseRout()

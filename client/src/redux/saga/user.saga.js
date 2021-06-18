@@ -4,12 +4,14 @@ import {getDataFromApi, updateUserId} from "../../api";
 
 import {GET_USER, UPDATE_USER} from "../types";
 import {successGetUser, successUpdateUser} from "../actions/user.actions";
+import {hideLoader, showLoader} from "../actions/app.action";
 
 function* sagaWorkerUserUpdate(action) {
   try{
-    console.log(action.payload._id)
+    yield put(showLoader())
     const {data} = yield call( () => updateUserId('/user/', action.payload._id, action.payload.data))
     yield put(successUpdateUser(data))
+    yield put(hideLoader())
   }catch (e){
     console.log(e)
   }

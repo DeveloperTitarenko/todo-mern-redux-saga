@@ -5,9 +5,13 @@ import CachedIcon from "@material-ui/icons/Cached";
 import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
 import {useEffect, useState} from "react";
 
-const UploadAvatar = ({setForm}) => {
+
+
+const UploadAvatar = ({setForm, form}) => {
   const [selectedFile, setSelectedFile] = useState()
   const [preview, setPreview] = useState()
+  const [base64Img, setBase64Img] = useState()
+
 
   useEffect(() => {
     if (!selectedFile) {
@@ -19,22 +23,39 @@ const UploadAvatar = ({setForm}) => {
     return () => URL.revokeObjectURL(objectUrl)
   }, [selectedFile])
 
-  const onSelectFile = e => {
+  const onSelectFile = async (e) => {
     if (!e.target.files || e.target.files.length === 0) {
       setSelectedFile(undefined)
       return
     }
     setSelectedFile(e.target.files[0])
-    setForm(prev => ({...prev, logo: e.target.files[0]}))
+    const base64img = await convertBase64(e.target.files[0])
+    setBase64Img(base64img)
+    setForm(prev => ({...prev, logo: base64img}))
+
+  }
+  const convertBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader()
+      fileReader.readAsDataURL(file)
+      fileReader.onload = () => {
+        resolve(fileReader.result)
+      }
+      fileReader.onerror = (err) => {
+        reject(err)
+      }
+    })
   }
 
   const remove = () => {
-    setSelectedFile(null)
+    setForm((prev) => ({...prev, logo: ''}))
   }
+
+
   return(
     <div className='user-upload'>
       <div className='user-upload__preview'>
-        {preview ? <img src={preview} alt="" />: <img src={avatar} alt=""/>}
+        {form.logo ? <img src={form.logo} alt="" /> : <img src={avatar} alt=""/>}
       </div>
 
       <div className='user-upload__controllers'>

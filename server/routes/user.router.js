@@ -6,7 +6,7 @@ const user = require('../controllers/userController')
 
 
 router.get('/user/:email', user.getUser)
-router.patch('/user/:id', user.updateUser)
+router.post('/user/:id', user.updateUser)
 
 
 module.exports = router

@@ -13,7 +13,7 @@ export default function TaskMenu({taskId, setModalActive, setTaskId}) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const dispatch = useDispatch()
   const tasks = useSelector((state) => state.tasks)
-  const user = useSelector(state => state.auth)
+  const user = useSelector(state => state.user)
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -24,11 +24,11 @@ export default function TaskMenu({taskId, setModalActive, setTaskId}) {
   };
 
   const takeUp = () => {
+    // const user = useSelector(state => state.user)
     const task = tasks.filter(task => task._id === taskId)
-    console.log(task)
     dispatch(updateTask({
       id: taskId,
-      data: {...task[0], performer: user.username, takeUp: !task[0].takeUp}
+      data: {...task[0], performer: user.username, takeUp: !task[0].takeUp, performerLogo: user.logo}
     }))
     handleClose()
   }

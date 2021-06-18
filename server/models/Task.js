@@ -19,6 +19,9 @@ const TaskSchema = new Schema({
   performer: {
     type: String
   },
+  performerLogo: {
+    type: String
+  },
   takeUp: {
     type: Boolean
   }

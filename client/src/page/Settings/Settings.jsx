@@ -6,8 +6,10 @@ import UploadAvatar from "../../components/UploadAvatar/UploadAvatar";
 import Check from "../../components/Check/Check";
 import {useDispatch, useSelector} from "react-redux";
 import {updateUser} from "../../redux/actions/user.actions";
+import {Loader} from "../../components/loader/Loader";
 
 const Settings = () => {
+  const loading = useSelector(state => state.app.loading)
   const user = useSelector(state => state.user)
   const dispatch = useDispatch()
   const [form, setForm] = useState({
@@ -16,8 +18,14 @@ const Settings = () => {
     firstName: user.firstName,
     lastName: user.lastName,
     position: user.position,
-    logo: {},
+    logo: user.logo,
   })
+  const [formPassword, setFormPassword] = useState({
+    password: '',
+    newPassword: '',
+    repeatNewPassword: '',
+  })
+
   const handleForm = (event) => {
     const {name, value} = event.target
     setForm((prev) => {
@@ -27,6 +35,13 @@ const Settings = () => {
 
   const updateUserData = () => {
     dispatch(updateUser({_id: user._id, data: form}))
+  }
+
+  const handleFormPassword = (event) => {
+    const {name, value} = event.target
+    setFormPassword((prev) => {
+      return ({...prev, [name]: value})
+    })
   }
 
   return (
@@ -55,8 +70,8 @@ const Settings = () => {
             value={form.position} onChange={handleForm}
           />
         </div>
-        <UploadAvatar setForm={setForm}/>
-        <button className='button-save' onClick={updateUserData}>Save</button>
+        <UploadAvatar setForm={setForm} form={form}/>
+        {loading ? <Loader/> : <button className='button-save' onClick={updateUserData}>Save</button>}
       </div>
       <div className='setting__password'>
         <h1>Setting password</h1>
@@ -64,15 +79,15 @@ const Settings = () => {
           <div className='setting__password-input'>
             <Input
               textLabel='Password' name='password' type='password' placeholder='Password'
-              value={form.password} onChange={handleForm}
+              value={formPassword.password} onChange={handleFormPassword}
             />
             <Input
               textLabel='New Password' name='newPassword' type='password' placeholder='New Password'
-              value={form.newPassword} onChange={handleForm}
+              value={formPassword.newPassword} onChange={handleFormPassword}
             />
             <Input
               textLabel='Repeat new Password' name='repeatNewPassword' type='password' placeholder='Repeat new Password'
-              value={form.repeatNewPassword} onChange={handleForm}
+              value={formPassword.repeatNewPassword} onChange={handleFormPassword}
             />
           </div>
           <div className='setting__password-validation'>
@@ -88,7 +103,7 @@ const Settings = () => {
             </div>
           </div>
         </div>
-        <button className='button-save'>Save</button>
+        {loading ? <Loader/> : <button className='button-save'>Save</button>}
       </div>
     </div>
   )

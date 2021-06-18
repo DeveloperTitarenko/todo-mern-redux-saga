@@ -27,7 +27,7 @@ const MainPage = () => {
         <header className="header">
           <Search/>
           <div className='user-info'>
-            <User userName={user.username} position={user.position}/>
+            <User userName={user.username} position={user.position} logo={user.logo}/>
             <UserMenu/>
           </div>
         </header>

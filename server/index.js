@@ -1,6 +1,7 @@
 const express = require('express')
 const cors = require("cors")
 const mongoose = require('mongoose')
+const bodyParser = require('body-parser')
 
 const app = express()
 const authRouter = require('./routes/auth.router')
@@ -9,6 +10,8 @@ const userRouter = require('./routes/user.router')
 
 const PORT = process.env.PORT || 5000
 
+app.use(bodyParser.json({limit: "30mb", extended: true}))
+app.use(bodyParser.urlencoded({limit: "30mb", extended: true}))
 app.use(express.json({extended: true}))
 app.use(cors())
 app.use(authRouter)

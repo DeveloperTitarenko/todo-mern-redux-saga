@@ -34,7 +34,7 @@ function* sagaWorkerLogin(action) {
     localStorage.setItem('token',data.token)
     yield put(auth())
     yield put(hideLoader())
-    yield put(push('/'))
+    yield put(push('/Dashboard'))
   }catch (e){
     yield put(showError('Проверьте email и пароль'))
     yield delay(2000)

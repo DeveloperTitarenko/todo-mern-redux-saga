@@ -25,7 +25,7 @@ const UserSchema = new Schema({
     type: String
   },
   logo: {
-    type: Object
+    type: String
   }
 })
 UserSchema.methods.generateJWT = function(user) {
