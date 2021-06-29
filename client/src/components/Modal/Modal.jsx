@@ -15,7 +15,7 @@ const ModalCreateTask = ({modalActive, setModalActive, taskId, setTaskId}) => {
     title: '',
     text: '',
     type: '',
-    takeUp: false
+    takeUp: false,
   })
   const changeHandler = (event) => {
     const {name, value} = event.target
@@ -28,7 +28,7 @@ const ModalCreateTask = ({modalActive, setModalActive, taskId, setTaskId}) => {
       type: '',
       title: '',
       text: '',
-      takeUp: false
+      takeUp: false,
     })
     setModalActive(false)
   }
@@ -42,7 +42,7 @@ const ModalCreateTask = ({modalActive, setModalActive, taskId, setTaskId}) => {
       type: '',
       title: '',
       text: '',
-      takeUp: false
+      takeUp: false,
     })
     setTaskId(null)
     setModalActive(false)

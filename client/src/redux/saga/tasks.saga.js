@@ -1,9 +1,8 @@
-import {takeEvery, put, call, delay} from 'redux-saga/effects'
-import {CREATE_TASK, DELETE_TASK, GET_TASK, GET_TASK_STATE, LOGIN, REGISTRATION, UPDATE_TASK} from "../types";
+import {takeEvery, put, call} from 'redux-saga/effects'
+import {CREATE_TASK, DELETE_TASK, GET_TASK_STATE, UPDATE_TASK} from "../types";
 import {deleteTaskId, getDataFromApi, postDataToApi, updateTaskId} from "../../api";
 import {createTaskState, getTasks, successUpdateTask} from "../actions/tasks.action";
 import {hideLoader, showLoader} from "../actions/app.action";
-
 
 
 
@@ -19,7 +18,11 @@ function* sagaWorkerCreateTask(action) {
 function* sagaWorkerGetTasks(action) {
   try{
     const {data} = yield call(() => getDataFromApi('/task', action.payload))
-    yield put(getTasks([...data]))
+    const tasks = data.map(task => {
+      task.loading = false
+      return task
+    })
+    yield put(getTasks(tasks))
   }catch (e){
 
   }
@@ -42,7 +45,6 @@ function* sagaWorkerUpdateTask(action) {
 
   }
 }
-
 
 
 export function* sagaWatcherTasks() {

@@ -13,6 +13,7 @@ import {createBrowserHistory} from 'history'
 import {ConnectedRouter, routerMiddleware} from "connected-react-router";
 import {sagaWatcherTasks} from "./redux/saga/tasks.saga";
 import {sagaWatcherUser} from "./redux/saga/user.saga";
+import {sagaWatcherGetUser} from "./redux/saga/users.saga";
 
 const saga = createSagaMiddleware()
 
@@ -26,6 +27,7 @@ const store = createStore(rootReducer(history), compose(
 saga.run(sagaWatcher)
 saga.run(sagaWatcherTasks)
 saga.run(sagaWatcherUser)
+saga.run(sagaWatcherGetUser)
 const app = (
   <Provider store={store}>
     <ConnectedRouter history={history}>

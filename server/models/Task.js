@@ -24,7 +24,7 @@ const TaskSchema = new Schema({
   },
   takeUp: {
     type: Boolean
-  }
+  },
 })
 
 module.exports = model('Task', TaskSchema)

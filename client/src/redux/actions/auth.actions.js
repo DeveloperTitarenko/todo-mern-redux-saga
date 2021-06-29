@@ -1,35 +1,21 @@
 import {AUTH, LOGIN, LOGOUT, REGISTRATION, SUCCESS_LOGIN} from "../types";
 
-// использовать вместо showLoader()
-export function login(payload) {
-  return{
+
+export const login = (payload) => ({
     type: LOGIN,
     payload
-  }
-}
-// success login записывает данные юзера и выполняет работу hideLoader()
-
-export function successLogin(payload){
-  return{
+  })
+export const successLogin = (payload) => ({
     type: SUCCESS_LOGIN,
     payload
-  }
-}
-
-export function registration(payload) {
-  return{
+  })
+export const registration = (payload) => ({
     type: REGISTRATION,
     payload
-  }
-}
-
-export function logout() {
-  return{
+  })
+export const logout = () => ({
     type: LOGOUT
-  }
-}
-export function auth() {
-  return {
+  })
+export const auth = () => ({
     type: AUTH
-  }
-}
+  })

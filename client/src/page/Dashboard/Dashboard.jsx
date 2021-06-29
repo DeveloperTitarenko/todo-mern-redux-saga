@@ -5,13 +5,18 @@ import Task from "../../components/Tasks/Task/Task";
 import {useSelector} from "react-redux";
 
 
+
 const Dashboard = () => {
   const [modalActive, setModalActive] = useState(false)
   const [taskId, setTaskId] = useState(null)
   const tasks = useSelector((state) => state.tasks)
+  const search = useSelector(state => state.app.search)
+ const filterTasks = tasks.filter(task => {
+   return task.title.toLowerCase().includes(search.toLowerCase())
+ })
   const TasksAll = () => {
     return(
-      tasks.map((task, index) => {
+      filterTasks.map((task, index) => {
         if(!task.finished){
           return (
             <div key={index}>

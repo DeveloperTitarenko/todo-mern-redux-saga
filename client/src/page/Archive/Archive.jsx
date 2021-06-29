@@ -5,13 +5,16 @@ import ModalCreateTask from "../../components/Modal/Modal";
 import Task from "../../components/Tasks/Task/Task";
 
 const Archive = () => {
+  const search = useSelector(state => state.app.search)
   const tasks = useSelector(state => state.tasks)
   const [modalActive, setModalActive] = useState(false)
   const [taskId, setTaskId] = useState(null)
-
+  const filterTasks = tasks.filter(task => {
+    return task.title.toLowerCase().includes(search.toLowerCase())
+  })
   const FinishedTasks = () => {
     return (
-      tasks.map((task, index) => {
+      filterTasks.map((task, index) => {
         if (task.finished) {
           return (
             <div key={index}>

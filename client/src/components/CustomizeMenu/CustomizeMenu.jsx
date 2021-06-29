@@ -24,7 +24,7 @@ export default function CustomizeMenu({setModalActive}) {
     <div>
       <div className='tasks__customize' onClick={handleClick} style={{cursor:'pointer'}}>
         <CustomizeSvg/>
-        <span>Customize</span>
+        <span>Create task</span>
       </div>
       <Menu
         id="simple-menu"

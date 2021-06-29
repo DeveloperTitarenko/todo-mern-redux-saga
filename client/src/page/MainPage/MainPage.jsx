@@ -7,21 +7,25 @@ import UserMenu from "../../components/UserMenu/UserMenu";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useMemo} from "react";
 import {getUser} from "../../redux/actions/user.actions";
+import {Error} from "../../components/error/Error";
+import {getUsers} from "../../redux/actions/users.actions";
 
 
 const MainPage = () => {
-
+  const emailUser = localStorage.getItem('email')
   const dispatch = useDispatch()
   const routMainPage = UseRoutMainPage()
   const userAuth = useSelector(state => state.auth)
   const user = useSelector(state => state.user)
-
+  const error = useSelector(state => state.app.error)
   useEffect(() => {
-    dispatch(getUser(userAuth.email))
+    dispatch(getUser(userAuth.email || emailUser))
+    dispatch(getUsers())
   }, [])
 
   return (
     <div className='main-page'>
+      {error ? <Error text={error}/> : null}
       <Drawer/>
       <div className='right-content'>
         <header className="header">

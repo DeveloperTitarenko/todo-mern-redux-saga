@@ -4,7 +4,7 @@ import {postDataToApi} from "../../api";
 import { push } from 'connected-react-router'
 import {auth, successLogin} from "../actions/auth.actions";
 import {hideError, hideLoader, showError, showLoader} from "../actions/app.action";
-import {getUser} from "../actions/user.actions";
+
 
 
 
@@ -14,12 +14,13 @@ function* sagaWorkerRegistration(action) {
     yield put(showLoader())
     const {data} = yield call( () => postDataToApi('/registration', action.payload))
     localStorage.setItem('token',data.token)
+    localStorage.setItem('email',data.email)
     yield put(auth())
     yield put(hideLoader())
     yield put(push('/'))
   }catch (e){
-    yield put(showError('Что то пошло не так, такой email уже зарегестрирован, либо пароль введен неверно '))
-    yield delay(2000)
+    yield put(showError('Something went wrong, this email has already been registered, or the password was entered incorrectly '))
+    yield delay(2500)
     yield put(hideLoader())
     yield put(hideError())
     console.log(e)
@@ -32,12 +33,13 @@ function* sagaWorkerLogin(action) {
     const {data} = yield  call(() => postDataToApi('/login', action.payload))
     yield put(successLogin({...data}))
     localStorage.setItem('token',data.token)
+    localStorage.setItem('email',data.email)
     yield put(auth())
     yield put(hideLoader())
     yield put(push('/Dashboard'))
   }catch (e){
-    yield put(showError('Проверьте email и пароль'))
-    yield delay(2000)
+    yield put(showError('email or password entered incorrectly'))
+    yield delay(2500)
     yield put(hideLoader())
     yield put(hideError())
   }

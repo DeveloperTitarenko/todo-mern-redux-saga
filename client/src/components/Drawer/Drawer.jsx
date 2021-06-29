@@ -3,7 +3,7 @@ import {useState} from "react";
 
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import dashboardIcon from '../../static/drawer/nav/Dashboard'
+
 
 
 import logo from '../../static/logo/Group.svg'
@@ -12,6 +12,7 @@ import SettingSvg from "../../static/drawer/nav/setting";
 import DocumentsSvg from "../../static/drawer/nav/documents";
 import CoursesSvg from "../../static/drawer/nav/Courses";
 import DashboardSvg from "../../static/drawer/nav/Dashboard";
+import UsersSvg from '../../static/drawer/nav/Users'
 const Drawer = () => {
   const [active, setActive] = useState(true)
   const showDrawer = () => setActive((prev) => !prev)
@@ -25,9 +26,10 @@ const Drawer = () => {
       </div>
       <nav className="drawer__nav">
         <ul>
-          <li><NavLink to='/Dashboard' className='link' activeClassName='active-link'><DashboardSvg/><span>Dashboard</span></NavLink></li>
+          <li><NavLink to='/Dashboard' className='link' activeClassName='active-link'><DashboardSvg/><span>All tasks</span></NavLink></li>
           <li><NavLink to="/Courses" className='link' activeClassName='active-link'><CoursesSvg/><span>In gear</span></NavLink></li>
           <li><NavLink to="/Materials" className='link' activeClassName='active-link'><DocumentsSvg /><span>Archive</span></NavLink></li>
+          <li><NavLink to="/Users" className='link' activeClassName='active-link'><UsersSvg /><span>Users</span></NavLink></li>
           <li><NavLink to="/Settings" className='link' activeClassName='active-link'><SettingSvg /><span>Settings</span></NavLink></li>
         </ul>
       </nav>

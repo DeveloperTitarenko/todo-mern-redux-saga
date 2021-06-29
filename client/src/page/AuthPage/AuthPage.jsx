@@ -40,7 +40,7 @@ const AuthPage = () => {
 
   useEffect(() => {
     const regEmail = /^(|(([A-Za-z0-9]+_+)|([A-Za-z0-9]+\-+)|([A-Za-z0-9]+\.+)|([A-Za-z0-9]+\++))*[A-Za-z0-9]+@((\w+\-+)|(\w+\.))*\w{1,63}\.[a-zA-Z]{2,6})$/i
-    const regPassword = /^[A-Z0-9_-]{4,12}$/i
+    const regPassword = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{6,}$/
 
     switch (eventName) {
       case 'email' :
@@ -107,7 +107,7 @@ const AuthPage = () => {
             value={form.password} onChange={changeHandler}
             style={validation.validationPassword ? {outlineColor: 'green'} : {outlineColor: 'red'}}
           />
-
+          <span>password must contain numbers, uppercase letters, lowercase letters and must be greater than 6</span>
           {!isLogIn ? <Input
               textLabel='Repeat Password' name='repeatPassword' type='password' placeholder='Repeat password'
               value={form.repeatPassword} onChange={changeHandler}

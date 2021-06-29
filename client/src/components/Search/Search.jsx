@@ -3,12 +3,14 @@ import './search.scss'
 
 import SearchIcon from '@material-ui/icons/Search';
 import {useState} from "react";
-
+import {useDispatch} from 'react-redux'
+import {tasksSearch} from "../../redux/actions/app.action";
 
 const Search = () => {
-  const [search, setSearch] = useState()
+  const dispatch = useDispatch()
+
   const handleSearch = (event) => {
-    setSearch(event.target.value)
+    dispatch(tasksSearch(event.target.value))
   }
   return(
     <div className='search'>

@@ -5,51 +5,41 @@ import {
   GET_TASK_STATE,
   SUCCESS_CREATE_TASK,
   SUCCESS_UPDATE_TASK,
-  UPDATE_TASK
+  SUCCESS_UPDATE_TASKS, TASK_LOADING,
+  UPDATE_TASK,
+
 } from "../types";
 
 
-export function createTask (payload) {
-  return{
-    type: CREATE_TASK,
-    payload
-  }
-}
-export function createTaskState (payload) {
-  return{
-    type: SUCCESS_CREATE_TASK,
-    payload
-  }
-}
+export const createTask = (payload) => ({
+  type: CREATE_TASK,
+  payload
+})
+export const createTaskState = (payload) => ({
+  type: SUCCESS_CREATE_TASK,
+  payload
+})
+export const getTasks = (payload) => ({
+  type: GET_TASK,
+  payload
+})
+export const getTasksState = () => ({
+  type: GET_TASK_STATE
+})
+export const deleteTask = (payload) => ({
+  type: DELETE_TASK,
+  payload
+})
+export const updateTask = (payload) => ({
+  type: UPDATE_TASK,
+  payload
+})
+export const successUpdateTask = (payload) => ({
+  type: SUCCESS_UPDATE_TASK,
+  payload
+})
+export const successUpdateTasks = (payload) => ({
+  type: SUCCESS_UPDATE_TASKS,
+  payload
+})
 
-export function getTasks (payload) {
-  return{
-    type: GET_TASK,
-    payload
-  }
-}
-export function getTasksState() {
-  return{
-    type: GET_TASK_STATE
-  }
-}
-export function deleteTask(payload) {
-  return{
-    type: DELETE_TASK,
-    payload
-  }
-}
-
-export function updateTask(payload) {
-  return{
-    type: UPDATE_TASK,
-    payload
-  }
-}
-
-export function successUpdateTask(payload) {
-  return{
-    type: SUCCESS_UPDATE_TASK,
-    payload
-  }
-}

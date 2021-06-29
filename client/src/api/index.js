@@ -21,5 +21,5 @@ export const updateTaskId = async (route, params = '', data) => {
 }
 
 export const updateUserId = async (route, params = '', data) => {
-  return await axiosInstance.post(`${route}${params}`, data)
+  return await axiosInstance.patch(`${route}${params}`, data)
 }

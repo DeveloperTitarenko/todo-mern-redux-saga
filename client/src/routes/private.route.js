@@ -8,7 +8,7 @@ const  PrivateRoute = (props) => {
 
   const isLogin = useSelector(state => state.auth.isAuth)
 
-  return  isLogin ? (<Route  path={props.path}  exact={props.exact} component={props.component} />) :
+  return  jwt ? (<Route  path={props.path}  exact={props.exact} component={props.component} />) :
     (<Redirect  to="/login"  />);
 };
 export  default  PrivateRoute;

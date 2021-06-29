@@ -1,15 +1,19 @@
 import './settings.scss'
 
 import Input from "../../components/Input/Input";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import UploadAvatar from "../../components/UploadAvatar/UploadAvatar";
 import Check from "../../components/Check/Check";
 import {useDispatch, useSelector} from "react-redux";
-import {updateUser} from "../../redux/actions/user.actions";
+import {updateUser, updateUserPassword} from "../../redux/actions/user.actions";
 import {Loader} from "../../components/loader/Loader";
+import {Error} from "../../components/error/Error";
+
 
 const Settings = () => {
-  const loading = useSelector(state => state.app.loading)
+
+
+  const loading = useSelector(state => state.app)
   const user = useSelector(state => state.user)
   const dispatch = useDispatch()
   const [form, setForm] = useState({
@@ -25,7 +29,46 @@ const Settings = () => {
     newPassword: '',
     repeatNewPassword: '',
   })
+  //VALIDATION-PASSWORD
+  const regLowerPassword = /[a-z]/
+  const regUpperCasePassword = /[A-Z]/
+  const regNumbersPassword = /[0-9]/
+  const regLengthPassword = /.{6,}$/
 
+  const [validation, setValidation] = useState({
+    length: false,
+    upperCase: false,
+    lowerCase: false,
+    number: false,
+    repeatPassword: false
+  })
+  // setValidation(prev => ({...prev, number:  regNumbersPassword.test(formPassword.newPassword)}))
+  useEffect(() => {
+    regLowerPassword.test(formPassword.newPassword)
+      ? setValidation(prev => ({...prev, lowerCase: true}))
+      : setValidation(prev => ({...prev, lowerCase: false}))
+
+    regLengthPassword.test(formPassword.newPassword)
+      ? setValidation(prev => ({...prev, length: true}))
+      : setValidation(prev => ({...prev, length: false}))
+
+    regNumbersPassword.test(formPassword.newPassword)
+      ? setValidation(prev => ({...prev, number: true}))
+      : setValidation(prev => ({...prev, number: false}))
+
+    regUpperCasePassword.test(formPassword.newPassword)
+      ? setValidation(prev => ({...prev, upperCase: true}))
+      : setValidation(prev => ({...prev, upperCase: false}))
+
+    formPassword.newPassword === formPassword.repeatNewPassword
+      ? setValidation(prev => ({...prev, repeatPassword: true}))
+      : setValidation(prev => ({...prev, repeatPassword: false}))
+
+  }, [formPassword])
+
+  const validationStatus = validation.number && validation.repeatPassword && validation.length && validation.lowerCase && validation.upperCase
+
+//END VALIDATION PASSWORD
   const handleForm = (event) => {
     const {name, value} = event.target
     setForm((prev) => {
@@ -34,7 +77,7 @@ const Settings = () => {
   }
 
   const updateUserData = () => {
-    dispatch(updateUser({_id: user._id, data: form}))
+    dispatch(updateUser({_id: user._id, data: form, performer: user.username}))
   }
 
   const handleFormPassword = (event) => {
@@ -42,6 +85,14 @@ const Settings = () => {
     setFormPassword((prev) => {
       return ({...prev, [name]: value})
     })
+  }
+
+  const updatePassword = () => {
+      const data = {
+        password: formPassword.password,
+        newPassword: formPassword.newPassword
+      }
+      dispatch(updateUserPassword({_id: user._id, data}))
   }
 
   return (
@@ -71,7 +122,7 @@ const Settings = () => {
           />
         </div>
         <UploadAvatar setForm={setForm} form={form}/>
-        {loading ? <Loader/> : <button className='button-save' onClick={updateUserData}>Save</button>}
+        {loading.updateUserLoading ? <Loader/> : <button className='button-save' onClick={updateUserData}>Save</button>}
       </div>
       <div className='setting__password'>
         <h1>Setting password</h1>
@@ -94,16 +145,23 @@ const Settings = () => {
             <div className='setting__password-validation-wrapper'>
               <h2>Password must contain</h2>
               <ul>
-                <li><Check check={false}/>8-16 characters</li>
-                <li><Check check={true}/>lower-case</li>
-                <li><Check check={true}/>upper-case</li>
-                <li><Check check={true}/>numbers</li>
-                <li><Check check={true}/>special characters</li>
+                <li><Check check={validation.length}/>8+ characters</li>
+                <li><Check check={validation.lowerCase}/>lower-case</li>
+                <li><Check check={validation.upperCase}/>upper-case</li>
+                <li><Check check={validation.number}/>numbers</li>
+                <li><Check check={validation.repeatPassword}/>repeat password</li>
               </ul>
             </div>
           </div>
         </div>
-        {loading ? <Loader/> : <button className='button-save'>Save</button>}
+        {
+          loading.updateUserPasswordLoading
+            ? <Loader/>
+            : <button className='button-save' disabled={!validationStatus}
+                      onClick={updatePassword}
+            >Save
+            </button>
+        }
       </div>
     </div>
   )

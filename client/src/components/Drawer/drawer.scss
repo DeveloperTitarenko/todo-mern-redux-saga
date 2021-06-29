@@ -47,7 +47,7 @@
     }
   }
 }
-.arrow{
+.arrow {
   position: absolute;
   right: 1rem;
   top: 1rem;
@@ -102,6 +102,11 @@
   .setting-svg{
     path{
       stroke: white;
+    }
+  }
+  .users-svg{
+    path{
+      fill: white;
     }
   }
 }

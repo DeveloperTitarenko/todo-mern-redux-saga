@@ -24,7 +24,6 @@ export default function TaskMenu({taskId, setModalActive, setTaskId}) {
   };
 
   const takeUp = () => {
-    // const user = useSelector(state => state.user)
     const task = tasks.filter(task => task._id === taskId)
     dispatch(updateTask({
       id: taskId,
