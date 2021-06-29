@@ -4,15 +4,12 @@ import {
   GET_TASK,
   SUCCESS_CREATE_TASK,
   SUCCESS_UPDATE_TASK,
-  SUCCESS_UPDATE_TASKS,
+  SUCCESS_UPDATE_TASKS, TASK_HIDE_LOADING, TASK_SHOW_LOADING,
   UPDATE_TASK
 } from "../types";
 
 export const tasksReducer = (state = [], action) => {
   switch (action.type){
-    case UPDATE_TASK: {
-
-    }
     case SUCCESS_CREATE_TASK: {
       return [...state, action.payload]
     }
@@ -28,6 +25,8 @@ export const tasksReducer = (state = [], action) => {
     case SUCCESS_UPDATE_TASKS: {
       return action.payload
     }
+    case TASK_SHOW_LOADING: return state.map(task => task._id === action.payload ? {...task, loading: true} : task)
+    case TASK_HIDE_LOADING: return state.map(task => task._id === action.payload ? {...task, loading: false} : task)
     default: return state
   }
 }

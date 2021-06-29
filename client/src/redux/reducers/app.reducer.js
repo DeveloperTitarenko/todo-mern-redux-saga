@@ -1,10 +1,10 @@
 import {
   HIDE_ERROR,
-  HIDE_LOADER, HIDE_LOADER_USER_PASSWORD_UPDATE,
-  HIDE_LOADER_USER_UPDATE,
+  HIDE_LOADER, HIDE_LOADER_TASKS_LOADING, HIDE_LOADER_USER_PASSWORD_UPDATE,
+  HIDE_LOADER_USER_UPDATE, HIDE_LOADER_USERS_LOADING,
   SHOW_ERROR,
-  SHOW_LOADER, SHOW_LOADER_USER_PASSWORD_UPDATE,
-  SHOW_LOADER_USER_UPDATE, TASK_SEARCH
+  SHOW_LOADER, SHOW_LOADER_TASKS_LOADING, SHOW_LOADER_USER_PASSWORD_UPDATE,
+  SHOW_LOADER_USER_UPDATE, SHOW_LOADER_USERS_LOADING, TASK_SEARCH
 } from "../types";
 
 const initialState = {
@@ -12,6 +12,8 @@ const initialState = {
   error: null,
   updateUserLoading: false,
   updateUserPasswordLoading: false,
+  tasksLoading: false,
+  usersLoading: false,
   search: '',
 }
 
@@ -26,6 +28,10 @@ export const appReducer = (state = initialState, action) => {
     case SHOW_LOADER_USER_PASSWORD_UPDATE: return {...state, updateUserPasswordLoading: true}
     case HIDE_LOADER_USER_PASSWORD_UPDATE: return {...state, updateUserPasswordLoading: false}
     case TASK_SEARCH: return {...state, search: action.payload}
+    case SHOW_LOADER_TASKS_LOADING: return {...state, tasksLoading: true}
+    case HIDE_LOADER_TASKS_LOADING: return {...state, tasksLoading: false}
+    case SHOW_LOADER_USERS_LOADING: return {...state, usersLoading: true}
+    case HIDE_LOADER_USERS_LOADING: return {...state, usersLoading: false}
 
     default: return state
   }

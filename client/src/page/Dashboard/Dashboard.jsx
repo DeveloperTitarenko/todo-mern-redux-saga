@@ -3,6 +3,7 @@ import {useState} from "react";
 import ModalCreateTask from "../../components/Modal/Modal";
 import Task from "../../components/Tasks/Task/Task";
 import {useSelector} from "react-redux";
+import LoaderCircle from "../../components/LoaderCircle/LoaderCircle";
 
 
 
@@ -32,7 +33,6 @@ const Dashboard = () => {
       <Tasks setModalActive={setModalActive} setTaskId={setTaskId} component={TasksAll} title='Tasks' customize={true}/>
       <ModalCreateTask modalActive={modalActive} setModalActive={setModalActive} taskId={taskId} setTaskId={setTaskId}/>
     </>
-
   )
 }
 export default Dashboard

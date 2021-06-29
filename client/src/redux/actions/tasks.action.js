@@ -5,7 +5,9 @@ import {
   GET_TASK_STATE,
   SUCCESS_CREATE_TASK,
   SUCCESS_UPDATE_TASK,
-  SUCCESS_UPDATE_TASKS, TASK_LOADING,
+  SUCCESS_UPDATE_TASKS,
+  TASK_HIDE_LOADING,
+  TASK_SHOW_LOADING,
   UPDATE_TASK,
 
 } from "../types";
@@ -40,6 +42,16 @@ export const successUpdateTask = (payload) => ({
 })
 export const successUpdateTasks = (payload) => ({
   type: SUCCESS_UPDATE_TASKS,
+  payload
+})
+
+export const taskShowLoading = (payload) => ({
+  type: TASK_SHOW_LOADING,
+  payload
+})
+
+export const taskHideLoading = (payload) => ({
+  type: TASK_HIDE_LOADING,
   payload
 })
 

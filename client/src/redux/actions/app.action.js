@@ -1,10 +1,10 @@
 import {
   HIDE_ERROR,
-  HIDE_LOADER,
-  HIDE_LOADER_USER_PASSWORD_UPDATE, HIDE_LOADER_USER_UPDATE,
+  HIDE_LOADER, HIDE_LOADER_TASKS_LOADING,
+  HIDE_LOADER_USER_PASSWORD_UPDATE, HIDE_LOADER_USER_UPDATE, HIDE_LOADER_USERS_LOADING,
   SHOW_ERROR,
-  SHOW_LOADER,
-  SHOW_LOADER_USER_PASSWORD_UPDATE, SHOW_LOADER_USER_UPDATE, TASK_SEARCH
+  SHOW_LOADER, SHOW_LOADER_TASKS_LOADING,
+  SHOW_LOADER_USER_PASSWORD_UPDATE, SHOW_LOADER_USER_UPDATE, SHOW_LOADER_USERS_LOADING, TASK_SEARCH
 } from "../types";
 
 
@@ -37,6 +37,19 @@ export const hideLoaderUserSetting = () => ({
 export const tasksSearch = (payload) => ({
     type: TASK_SEARCH,
     payload
+})
+
+export const showLoaderTasksLoading = () => ({
+  type: SHOW_LOADER_TASKS_LOADING
+})
+export const hideLoaderTasksLoading = () => ({
+  type: HIDE_LOADER_TASKS_LOADING
+})
+export const showLoaderUsersLoading = () => ({
+  type: SHOW_LOADER_USERS_LOADING
+})
+export const hideLoaderUsersLoading = () => ({
+  type: HIDE_LOADER_USERS_LOADING
 })
 
 

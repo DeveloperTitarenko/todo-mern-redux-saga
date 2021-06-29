@@ -6,7 +6,7 @@ import {GET_USER, UPDATE_USER, UPDATE_USER_PASSWORD} from "../types";
 import {successGetUser, successUpdateUser, successUpdateUserPassword} from "../actions/user.actions";
 import {
   hideError,
-  hideLoader, hideLoaderUserPassword,
+   hideLoaderUserPassword,
   hideLoaderUserSetting, showError,
   showLoaderUserPassword,
   showLoaderUserSetting

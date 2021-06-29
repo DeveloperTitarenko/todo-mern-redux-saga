@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './modal.scss'
 import Input from "../Input/Input";
 import Button from "../Button/Button";
@@ -8,6 +8,7 @@ import {createTask, updateTask} from "../../redux/actions/tasks.action";
 
 const ModalCreateTask = ({modalActive, setModalActive, taskId, setTaskId}) => {
   const user = useSelector((state) => state.auth)
+  const taskActive = useSelector(state => state.tasks.filter(task => task._id === taskId)[0])
   const dispatch = useDispatch()
 
   const [task, setTask] = useState({
@@ -17,6 +18,8 @@ const ModalCreateTask = ({modalActive, setModalActive, taskId, setTaskId}) => {
     type: '',
     takeUp: false,
   })
+
+
   const changeHandler = (event) => {
     const {name, value} = event.target
     setTask((prev) => ({...prev, [name]: value}))
