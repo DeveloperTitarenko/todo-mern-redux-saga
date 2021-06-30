@@ -7,12 +7,10 @@ import Check from "../../components/Check/Check";
 import {useDispatch, useSelector} from "react-redux";
 import {updateUser, updateUserPassword} from "../../redux/actions/user.actions";
 import {Loader} from "../../components/loader/Loader";
-import {Error} from "../../components/error/Error";
+
 
 
 const Settings = () => {
-
-
   const loading = useSelector(state => state.app)
   const user = useSelector(state => state.user)
   const dispatch = useDispatch()
@@ -42,24 +40,12 @@ const Settings = () => {
     number: false,
     repeatPassword: false
   })
-  // setValidation(prev => ({...prev, number:  regNumbersPassword.test(formPassword.newPassword)}))
+
   useEffect(() => {
-    regLowerPassword.test(formPassword.newPassword)
-      ? setValidation(prev => ({...prev, lowerCase: true}))
-      : setValidation(prev => ({...prev, lowerCase: false}))
-
-    regLengthPassword.test(formPassword.newPassword)
-      ? setValidation(prev => ({...prev, length: true}))
-      : setValidation(prev => ({...prev, length: false}))
-
-    regNumbersPassword.test(formPassword.newPassword)
-      ? setValidation(prev => ({...prev, number: true}))
-      : setValidation(prev => ({...prev, number: false}))
-
-    regUpperCasePassword.test(formPassword.newPassword)
-      ? setValidation(prev => ({...prev, upperCase: true}))
-      : setValidation(prev => ({...prev, upperCase: false}))
-
+    setValidation(prev => ({...prev, lowerCase:  regLowerPassword.test(formPassword.newPassword)}))
+    setValidation(prev => ({...prev, length:  regLengthPassword.test(formPassword.newPassword)}))
+    setValidation(prev => ({...prev, number:  regNumbersPassword.test(formPassword.newPassword)}))
+    setValidation(prev => ({...prev, upperCase:  regUpperCasePassword.test(formPassword.newPassword)}))
     formPassword.newPassword === formPassword.repeatNewPassword
       ? setValidation(prev => ({...prev, repeatPassword: true}))
       : setValidation(prev => ({...prev, repeatPassword: false}))

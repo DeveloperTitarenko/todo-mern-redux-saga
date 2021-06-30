@@ -5,6 +5,8 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import {useDispatch} from "react-redux";
+import SettingSvg from "../../static/drawer/nav/setting";
+import {NavLink} from "react-router-dom";
 
 
 export default function UserMenu() {
@@ -34,8 +36,6 @@ export default function UserMenu() {
         onClose={handleClose}
         style={{fontSize: '1.6rem'}}
       >
-        <MenuItem onClick={handleClose}>Profile</MenuItem>
-        <MenuItem onClick={handleClose}>My account</MenuItem>
         <MenuItem onClick={logoutV}>Logout</MenuItem>
       </Menu>
     </div>

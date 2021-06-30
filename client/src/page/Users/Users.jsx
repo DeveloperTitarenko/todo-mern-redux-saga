@@ -10,21 +10,21 @@ const Users = () => {
   return (
     usersLoading ? <LoaderCircle/> :
     <div className='users'>
-      <h1>Users</h1>
-      <div className={'users__wrapper'}>
-        {users.map((user, index) => {
-          return (
-            <UserCard
-              index={index}
-              username={user.username}
-              firstName={user.firstName}
-              lastName={user.lastName}
-              position={user.position}
-              logo={user.logo}
-            />
-          )
-        })}
-      </div>
+        <h1>Users</h1>
+        <div className={'user-item'}>
+          {users.map((user, index) => {
+            return (
+              <UserCard
+                index={index}
+                username={user.username}
+                firstName={user.firstName}
+                lastName={user.lastName}
+                position={user.position}
+                logo={user.logo}
+              />
+            )
+          })}
+        </div>
     </div>
 )
 }

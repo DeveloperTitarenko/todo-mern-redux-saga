@@ -1,7 +1,22 @@
-.users__wrapper{
-  display: flex;
-  flex-wrap: wrap;
+@import "src/style/mixin";
+
+.users{
+  padding: 4rem 1.7rem;
   height: 92vh;
   overflow-y: scroll;
-  padding: 4rem 1.7rem;
+
+  h1{
+    font-family: MuseoModerno, serif;
+    margin-bottom: 2rem;
+  }
+
+  .user-item{
+    display: flex;
+    flex-wrap: wrap;
+    @include response(sm){
+      justify-content: center;
+    }
+  }
 }
+
+

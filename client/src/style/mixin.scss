@@ -15,7 +15,7 @@
     }
   }
   @if($breakpoint == sm) {
-    @media(max-width: 560px) {
+    @media(max-width: 500px) {
       @content;
     }
   }

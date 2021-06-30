@@ -1,8 +1,5 @@
 import './search.scss'
-
-
 import SearchIcon from '@material-ui/icons/Search';
-import {useState} from "react";
 import {useDispatch} from 'react-redux'
 import {tasksSearch} from "../../redux/actions/app.action";
 
@@ -14,8 +11,8 @@ const Search = () => {
   }
   return(
     <div className='search'>
-      <SearchIcon fontSize="large" style={{color: '#5855D6', fontSize: 30}}/>
-      <input type="text" placeholder='Search course, student or instructor' onChange={handleSearch}/>
+      <SearchIcon fontSize="large" style={{color: '#5855D6'}} className='search-icone'/>
+      <input type="text" placeholder='Search task' onChange={handleSearch}/>
     </div>
   )
 }
