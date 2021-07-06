@@ -12,7 +12,7 @@ const userRouter = require('./routes/user.router')
 const PORT = process.env.PORT || 5000
 
 app.get('/', (req, res) => {
-  res.send('Hello todo app')
+  res.send('Hello todo app heroku')
 })
 
 app.use(bodyParser.json({limit: "30mb", extended: true}))

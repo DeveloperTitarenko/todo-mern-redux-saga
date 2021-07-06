@@ -1,0 +1,20 @@
+{
+  "name": "todo-mern-redux-saga",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon ./server/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DeveloperTitarenko/todo-mern-redux-saga.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DeveloperTitarenko/todo-mern-redux-saga/issues"
+  },
+  "homepage": "https://github.com/DeveloperTitarenko/todo-mern-redux-saga#readme"
+}
